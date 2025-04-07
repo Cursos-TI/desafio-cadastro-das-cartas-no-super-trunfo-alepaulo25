@@ -13,15 +13,15 @@ typedef struct {
 
 // Função para limpar o buffer do teclado
 void limparBuffer() {
-    while (getchar() != '\n');  // Remove caracteres extras do buffer até encontrar '\n'
+    while (getchar() != '\n');
 }
 
 // Função para inserir os dados de uma carta
 void inserirCarta(Carta *carta, int numero) {
     printf("\n=== Cadastro da Carta %d ===\n", numero);
-    
+
     printf("Digite o nome do país: ");
-    (" %49[^\n]", carta->pais);
+    scanf(" %49[^\n]", carta->pais);
     limparBuffer();
 
     printf("Digite a população: ");
@@ -96,7 +96,7 @@ void compararCartas(const Carta *carta1, const Carta *carta2, int atributo) {
     printf("Carta 1 - %s: %.2f\n", carta1->pais, valor1);
     printf("Carta 2 - %s: %.2f\n", carta2->pais, valor2);
 
-    if (atributo == 5) { // Para Densidade Demográfica, menor valor vence
+    if (atributo == 5) {
         if (valor1 < valor2) {
             printf("Resultado: Carta 1 (%s) venceu!\n", carta1->pais);
         } else if (valor1 > valor2) {
@@ -104,7 +104,7 @@ void compararCartas(const Carta *carta1, const Carta *carta2, int atributo) {
         } else {
             printf("Resultado: Empate!\n");
         }
-    } else { // Para os outros atributos, maior valor vence
+    } else {
         if (valor1 > valor2) {
             printf("Resultado: Carta 1 (%s) venceu!\n", carta1->pais);
         } else if (valor1 < valor2) {
@@ -120,15 +120,12 @@ int main() {
 
     Carta carta1, carta2;
 
-    // Inserindo as cartas
     inserirCarta(&carta1, 1);
     inserirCarta(&carta2, 2);
 
-    // Exibindo as cartas
     exibirCarta(&carta1, 1);
     exibirCarta(&carta2, 2);
 
-    // Escolha do atributo para comparação
     int escolha;
     printf("\nEscolha o atributo para comparar:\n");
     printf("1 - População\n");
@@ -140,9 +137,9 @@ int main() {
     scanf("%d", &escolha);
     limparBuffer();
 
-    // Comparação das cartas
     compararCartas(&carta1, &carta2, escolha);
 
     return 0;
 }
+
 
